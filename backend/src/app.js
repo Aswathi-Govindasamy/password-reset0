@@ -1,15 +1,23 @@
-// src/app.js
 import express from "express";
 import cors from "cors";
-import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.get("/", (req, res) => {
-  res.send("Password Reset API is running");
-});
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      process.env.FRONTEND_URL,
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+
+// routes
+import authRoutes from "./routes/auth.routes.js";
 app.use("/api/auth", authRoutes);
 
 export default app;
