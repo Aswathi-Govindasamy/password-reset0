@@ -1,0 +1,11 @@
+# node
+node_modules/
+
+# env
+.env
+
+# build
+dist/
+
+# logs
+npm-debug.log*
